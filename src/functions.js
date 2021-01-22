@@ -22,9 +22,10 @@ function processTRAP(notification){
      var Valor = jsonSNMP.pdu.varbinds[0].value;
      var ID = jsonSNMP.pdu.varbinds[1].value; 
      var IP =  jsonSNMP.rinfo.address;
+     var Timestamp = Date.now();
 
      /* Apresentação Console*/
-     console.log("\033[31m => ID:"+ID+"\033[0m OID:"+OID+" Valor:"+Valor+" IP:"+IP);       
+     console.log("\033[31m => ID:"+ID+"\033[0m OID:"+OID+" Valor:"+Valor+" IP:"+IP+ " Timestamp:"+Timestamp);       
 }
 
 module.exports = {processTRAP}
