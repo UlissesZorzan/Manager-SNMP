@@ -10,11 +10,13 @@ function processTRAP(notification){
      //console.log(jsonSNMP);
      
      /*Conversão do "value" recebido em Buffer para String e incorporação no corpo do JSON */
-     let varbinds = jsonSNMP.pdu.varbinds;
+     let varbinds = jsonSNMP.pdu.varbinds;     
      for(let i = 0; i<varbinds.length; i++){
-         let value = Buffer.from(jsonSNMP.pdu.varbinds[i].value);
-         value = value.toString('utf8');
-         jsonSNMP.pdu.varbinds[i].value = value;
+         if(jsonSNMP.pdu.varbinds[i].value.type == 'Buffer'){
+            let value = Buffer.from(jsonSNMP.pdu.varbinds[i].value);
+            value = value.toString('utf8');
+            jsonSNMP.pdu.varbinds[i].value = value;
+         }         
      }
 
      /* Informações de OID, Valor e IP de origem*/
